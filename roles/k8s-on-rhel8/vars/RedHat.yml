@@ -1,0 +1,26 @@
+---
+#kubernetes_url_repo: https://pkgs.k8s.io/core:/stable:/v1.30/rpm/
+##
+##
+#kubernetes_url_key: "https://pkgs.k8s.io/core:/stable:/v1.30/rpm/repodata/repomd.xml.key"
+##
+##
+kubernetes_containerd: https://download.docker.com/linux/centos/docker-ce.repo
+##
+##
+kubernetes_pkg:
+  - kubelet-{{ kubernetes_version }}
+  - kubeadm-{{ kubernetes_version }}
+  - kubectl-{{ kubernetes_version }}
+#  - etcd
+  - bash-completion
+  - iproute-tc
+  - iproute
+  - chrony
+  - curl
+##
+containerd_pkg:
+  - containerd.io
+  - device-mapper-persistent-data
+  - lvm2
+##

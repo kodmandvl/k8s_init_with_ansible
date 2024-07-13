@@ -1,0 +1,66 @@
+---
+- name: Initialize The Cluster
+  shell: kubeadm init --kubernetes-version {{ kubernetes_version }} --pod-network-cidr {{ pod_network_cidr }} --service-cidr {{ service_cidr }}
+#  args:
+#    warn: false
+##
+- name: Create .kube Directory
+  file:
+    path: "/home/{{ kubernetes_user }}/.kube"
+    state: directory
+    owner: "{{ kubernetes_user }}"
+    group: "{{ kubernetes_user }}"
+##
+- name: Copy admin.conf file to user {{ kubernetes_user }}
+  copy:
+    src: /etc/kubernetes/admin.conf
+    dest: "/home/{{ kubernetes_user }}/.kube/config"
+    remote_src: yes
+    owner: "{{ kubernetes_user }}"
+    group: "{{ kubernetes_user }}"
+##
+- name: Create .kube Directory for root
+  file:
+    path: "/root/.kube"
+    state: directory
+    owner: root
+    group: root
+##
+- name: Copy admin.conf file to root
+  copy:
+    src: /etc/kubernetes/admin.conf
+    dest: "/root/.kube/config"
+    remote_src: yes
+    owner: root
+    group: root
+##
+- name: Copy calico.yaml
+  copy:
+    src: calico.yaml
+    dest: "/home/{{ kubernetes_user }}/calico.yaml"
+    owner: "{{ kubernetes_user }}"
+    group: "{{ kubernetes_user }}"
+##
+- name: Install Pod Network
+  vars:
+    ansible_remote_tmp: "/home/{{ kubernetes_user }}"
+  become_user: "{{ kubernetes_user }}"
+  shell: "{{ kubernetes_network }}"
+#  args:
+#    warn: false
+##
+- name: Get the token for joining the work nodes
+  vars:
+    ansible_remote_tmp: "/home/{{ kubernetes_user }}"
+  become_user: "{{ kubernetes_user }}"
+  shell: kubeadm token create  --print-join-command
+  register: kubernetes_workers
+##
+- name: Save join command token
+  copy:
+    content: "{{ kubernetes_workers.stdout_lines[0] }}"
+    dest: ./kubernetes_join.sh
+    mode: 0755
+  delegate_to: localhost
+  become: false
+...

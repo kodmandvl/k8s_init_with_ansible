@@ -1,0 +1,8 @@
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+{% for master in groups['kubernetes_masters'] %}
+{{ hostvars[master]['ansible_default_ipv4']['address'] }} {{ hostvars[master]['ansible_facts']['fqdn'] }} {{ hostvars[master]['ansible_facts']['hostname'] }}
+{% endfor %}
+{% for worker in groups['kubernetes_workers'] %}
+{{ hostvars[worker]['ansible_default_ipv4']['address'] }} {{ hostvars[worker]['ansible_facts']['fqdn'] }} {{ hostvars[worker]['ansible_facts']['hostname'] }}
+{% endfor %}

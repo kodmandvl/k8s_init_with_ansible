@@ -1,0 +1,11 @@
+---
+- name: Install Crictl
+  shell: curl -L https://github.com/kubernetes-sigs/cri-tools/releases/download/v1.30.0/crictl-v1.30.0-linux-amd64.tar.gz | tar -zxf - -C /usr/local/bin
+##
+- name: Copy crictl.yaml
+  copy:
+    src: crictl.yaml
+    dest: /etc/crictl.yaml
+    owner: root
+    group: root
+...

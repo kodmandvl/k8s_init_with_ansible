@@ -1,0 +1,19 @@
+---
+- name: Create user to administer Kubernetes
+  user:
+    name: "{{ kubernetes_user }}"
+    comment: "admin user for Kubernetes"
+    shell: /bin/bash
+    state: present
+##
+- name: Configure sudo
+  lineinfile:
+    path: "/etc/sudoers.d/{{ kubernetes_user }}"
+    create: yes
+    line: "{{ kubernetes_user }} ALL=(ALL) NOPASSWD:ALL"
+##
+- name: Configure bash-completion for user {{ kubernetes_user }}
+  shell: "kubectl completion bash >> /home/{{ kubernetes_user }}/.bashrc"
+#  args:
+#    warn: false
+...

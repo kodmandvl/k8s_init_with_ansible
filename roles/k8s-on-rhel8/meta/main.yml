@@ -1,0 +1,24 @@
+---
+dependencies: []
+#
+galaxy_info:
+  role_name: k8s-on-rhel8
+  author: dimka
+  description: Install and configuring the Kubernetes Cluster on RHEL8 (fork from Rustem Galiyev kubernetes role).
+  company: dimka
+  license: "license (BSD, MIT)"
+  min_ansible_version: 2.9
+  platforms:
+    - name: EL
+      versions:
+        - 8
+  galaxy_tags:
+    - kubernetes
+    - cluster
+    - container
+    - pods
+    - nodes
+    - workers
+    - kubectl
+#
+allow_duplicates: true

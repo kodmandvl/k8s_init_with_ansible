@@ -1,0 +1,22 @@
+---
+- name: Install Containerd Packages for Red Hat Family
+  yum:
+    name: "{{ containerd_pkg }}"
+    state: present
+##
+- name: Create containerd directory for Red Hat Family
+  file:
+    path: /etc/containerd
+    state: directory
+##
+- name: Configure containerd for Red Hat Family
+  shell: containerd config default > /etc/containerd/config.toml
+#  args:
+#    warn: false
+##
+- name: Start and enabled containerd service for Red Hat Family
+  service:
+    name: containerd
+    state: restarted
+    enabled: true
+...

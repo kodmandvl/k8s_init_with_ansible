@@ -1,0 +1,28 @@
+---
+kubernetes_user: kubeuser
+
+kubernetes_network: kubectl apply -f /home/kubeuser/calico.yaml
+
+pod_network_cidr: 10.244.0.0/16
+
+service_cidr: 10.96.0.0/12
+
+## For 1.30 version:
+kubernetes_version: 1.30.1
+kubernetes_url_repo: https://pkgs.k8s.io/core:/stable:/v1.30/rpm/
+kubernetes_url_key: "https://pkgs.k8s.io/core:/stable:/v1.30/rpm/repodata/repomd.xml.key"
+
+## For 1.29 version:
+#kubernetes_version: 1.29.5
+#kubernetes_url_repo: https://pkgs.k8s.io/core:/stable:/v1.29/rpm/
+#kubernetes_url_key: "https://pkgs.k8s.io/core:/stable:/v1.29/rpm/repodata/repomd.xml.key"
+
+## For 1.28 version:
+#kubernetes_version: 1.28.10
+#kubernetes_url_repo: https://pkgs.k8s.io/core:/stable:/v1.28/rpm/
+#kubernetes_url_key: "https://pkgs.k8s.io/core:/stable:/v1.28/rpm/repodata/repomd.xml.key"
+
+## For 1.24 version:
+#kubernetes_version: 1.24.4
+#kubernetes_url_repo: https://pkgs.k8s.io/core:/stable:/v1.24/rpm/
+#kubernetes_url_key: "https://pkgs.k8s.io/core:/stable:/v1.24/rpm/repodata/repomd.xml.key"

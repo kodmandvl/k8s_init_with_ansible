@@ -1,0 +1,14 @@
+---
+- name: Import Task kubernetes_install_etcd.yml
+  import_tasks: kubernetes_install_etcd.yml
+##
+- name: Import Task kubernetes_install_crictl.yml
+  import_tasks: kubernetes_install_crictl.yml
+##
+- name: Import Task kubernetes_install_nerdctl.yml
+  import_tasks: kubernetes_install_nerdctl.yml
+##
+- name: Import Task kubernetes_install_helm.yml
+  import_tasks: kubernetes_install_helm.yml
+##
+...

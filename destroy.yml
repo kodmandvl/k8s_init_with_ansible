@@ -1,0 +1,21 @@
+- hosts: kubernetes_masters,kubernetes_workers
+  become: yes
+  ignore_errors: yes
+  tasks:
+  - name: kubeadm reset
+    shell: /usr/bin/kubeadm reset -f
+  - name: remove K8s packages
+    package:
+      name:
+      - kubelet
+      - kubeadm
+      - kubectl
+      - containerd
+      state: absent
+  - name: remove repo files for k8s and for docker
+    file:
+      path: /etc/yum.repos.d/{{ item }}
+      state: absent
+    loop:
+      - kubernetes.repo
+      - docker-ce.repo

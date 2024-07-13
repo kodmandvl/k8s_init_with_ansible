@@ -1,0 +1,5 @@
+---
+- name: Install Nerdctl
+  shell: curl -L https://github.com/containerd/nerdctl/releases/download/v1.7.6/nerdctl-1.7.6-linux-amd64.tar.gz | tar -zxf - -C /usr/local/bin
+##
+...

@@ -1,0 +1,4 @@
+- hosts: kubernetes_masters,kubernetes_workers
+  become: yes
+  roles:
+    - k8s-on-rhel8

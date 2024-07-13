@@ -1,0 +1,12 @@
+---
+- name: Install Kubernetes Packages for Red Hat Family
+  yum:
+    name: "{{ kubernetes_pkg }}"
+    state: present
+##
+- name: Start and enabled kubelet for Red Hat Family
+  service:
+    name: kubelet
+    state: started
+    enabled: true
+...

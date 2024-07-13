@@ -1,0 +1,15 @@
+---
+- name: Create Kubernetes Repository for Red Hat Family
+  yum_repository:
+    name: kubernetes
+    description: "kubernetes Packages"
+    baseurl: "{{ kubernetes_url_repo }}"
+    enabled: yes
+    gpgcheck: yes
+    gpgkey: "{{ kubernetes_url_key }}"
+##
+- name: Create Repo for containerd package for Red Hat Family
+  get_url:
+    url: "{{ kubernetes_containerd }}"
+    dest: /etc/yum.repos.d/docker-ce.repo
+...

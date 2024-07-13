@@ -1,0 +1,34 @@
+---
+- name: Include Variables
+  include_vars: "{{ ansible_facts['os_family'] }}.yml"
+##
+- name: Import Task kubernetes_rhel_repo.yml
+  import_tasks: kubernetes_rhel_repo.yml
+  when: ansible_facts['os_family'] == 'RedHat'
+##
+- name: Import Task kubernetes_containerd_config.yml
+  import_tasks: kubernetes_containerd_config.yml
+##
+- name: Import Task kubernetes_install_rhel_pkg.yml
+  import_tasks: kubernetes_install_rhel_pkg.yml
+  when: ansible_facts['os_family'] == 'RedHat'
+##
+- name: Import Task containerd_install_rhel.yml
+  import_tasks: containerd_install_rhel.yml
+  when: ansible_facts['os_family'] == 'RedHat'
+##
+- name: Import Task kubernetes_user.yml
+  import_tasks: kubernetes_user.yml
+##
+- name: Import Task kubernetes_masters.yml
+  import_tasks: kubernetes_masters.yml
+  when: inventory_hostname in groups['kubernetes_masters']
+##
+- name: Import Task kubernetes_workers.yml
+  import_tasks: kubernetes_workers.yml
+  when: inventory_hostname in groups['kubernetes_workers']
+##
+- name: Import Task kubernetes_sample_app.yml
+  import_tasks: kubernetes_sample_app.yml
+  when: inventory_hostname in groups['kubernetes_masters']
+...

@@ -1,0 +1,5 @@
+---
+- name: Install Etcd binaries
+  shell: wget https://github.com/etcd-io/etcd/releases/download/v3.5.14/etcd-v3.5.14-linux-amd64.tar.gz && tar -xzvf etcd-v3.5.14-linux-amd64.tar.gz && cd etcd-v3.5.14-linux-amd64 && pwd && install -v -o root -g root -m 0755 ./etcd /usr/local/bin/ && install -v -o root -g root -m 0755 ./etcdctl /usr/local/bin/ && install -v -o root -g root -m 0755 ./etcdutl /usr/local/bin/ && echo OK
+##
+...
