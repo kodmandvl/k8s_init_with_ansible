@@ -1,6 +1,8 @@
 k8s-on-rhel8
 ==========
 
+# Init Kubernetes Cluster on RHEL8/CentOS8/RockyLinux8/AlmaLinux8 with Ansible (a simpler and faster scenario than Kubespray)
+
 Установка и настройка кластера Kubernetes на RHEL8/CentOS8/RockyLinux8/AlmaLinux8 (форк роли kubernetes Рустема Галиева)
 
 - Установить необходимые пакеты;
