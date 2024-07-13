@@ -1,7 +1,7 @@
 ---
 kubernetes_user: kubeuser
 
-kubernetes_network: kubectl apply -f /home/kubeuser/calico.yaml
+kubernetes_network: calico.yaml
 
 pod_network_cidr: 10.244.0.0/16
 

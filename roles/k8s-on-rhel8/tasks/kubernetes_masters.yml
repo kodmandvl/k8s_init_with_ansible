@@ -34,10 +34,10 @@
     owner: root
     group: root
 ##
-- name: Copy calico.yaml
+- name: Copy kubernetes network manifest
   copy:
-    src: calico.yaml
-    dest: "/home/{{ kubernetes_user }}/calico.yaml"
+    src: "{{ kubernetes_network }}"
+    dest: "/home/{{ kubernetes_user }}/{{ kubernetes_network }}"
     owner: "{{ kubernetes_user }}"
     group: "{{ kubernetes_user }}"
 ##
@@ -45,7 +45,7 @@
   vars:
     ansible_remote_tmp: "/home/{{ kubernetes_user }}"
   become_user: "{{ kubernetes_user }}"
-  shell: "{{ kubernetes_network }}"
+  shell: "kubectl apply -f /home/{{ kubernetes_user }}/{{ kubernetes_network }}"
 #  args:
 #    warn: false
 ##
