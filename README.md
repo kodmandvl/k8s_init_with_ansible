@@ -123,7 +123,7 @@ ansible-playbook -i hosts.yml -l all -u root destroy.yml
 - установка Istio
 - установка Cert-Manager
 - настройка сетевых политик
-- настройка PSA/PSP/OPA
+- настройка PSP/PSA/OPA
 - другие необходимые вам настройки в кластере
 - и т.д.
 
