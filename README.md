@@ -75,14 +75,15 @@ workers_node03
 
 ```yml
 [kubernetes_masters]
-cp2.k8s
+cp1.k8s
 
 [kubernetes_workers]
-cp3.k8s
+node1.k8s
+node2.k8s
 node3.k8s
 ```
 
-Здесь у нас в примере на машине cp2.k8s будут компоненты control-plane, а cp3.k8s и node3.k8s будут worker нодами (не обращайте внимание на имя машины cp3.k8s, просто такие три машины свободные остались для этих тестов).
+Здесь у нас в примере на машине cp1.k8s будут компоненты control-plane, а node1.k8s, node2.k8s и node3.k8s будут worker нодами.
 
 Также стоит отметить, что данная роль k8s-on-rhel8 подразумевает инициализацию кластера только с одним узлом control-plane (master).
 
